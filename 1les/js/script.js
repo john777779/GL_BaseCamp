@@ -1,6 +1,4 @@
-//RegExe
-//SElf Study
-//isFinite(a)
+
 var time = function (clock) {
   if (0 <= clock && clock <=24) {
     if (8 <= clock && clock <= 21) {
@@ -106,7 +104,6 @@ var fizzBuzz = function() {
 
 
 var vampire = function(a) {
-//  debugger
   var temp = a + "",
       len = temp.length % 2,
       arr = temp.split(""),
