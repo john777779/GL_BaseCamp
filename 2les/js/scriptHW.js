@@ -1,5 +1,5 @@
 function extractCharacters(str){
-    str.toLowerCase();
+    str = str.toLowerCase();
     var arr = str.split('');
     var obj = {};
 
