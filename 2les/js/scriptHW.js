@@ -32,5 +32,5 @@ var myLogger = function (some) {
   createLogger(prefix);
 };
 
-myLogger('some data');
+myLogger({key: 'data'});
 // 2016-06-06T09:55:44.162Z My Logger: some data
