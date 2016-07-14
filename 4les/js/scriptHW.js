@@ -1,9 +1,10 @@
 function Shape() {
   this.type = 'triangle';
-  this.getType = function() {
-      console.log(this.type)
-    };
 };
+
+Shape.prototype.getType = function() {
+    console.log(this.type)
+  };
 
 function Triangle(a, b, c) {
   Shape.apply(this, arguments);

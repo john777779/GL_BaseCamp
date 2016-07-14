@@ -13,13 +13,17 @@ function Cat(name, age) {
 var cat = new Cat('Tom', 4);
 
 function compareObjects(obj1, obj2, check) {
-  if (obj1[check] > obj2[check]) {
-    console.log(obj1.name)
-  } else if (obj1[check] === obj2[check]) {
-    console.log(obj1.name + ' and '+ obj2.name + ' coevals')
+  if (typeof obj1[check] == 'number' && typeof obj2[check] == 'number') {
+    if (obj1[check] > obj2[check]) {
+      console.log(obj1.name)
+    } else if (obj1[check] === obj2[check]) {
+      console.log(obj1.name + ' and '+ obj2.name + ' coevals')
     } else {
       console.log(obj2.name)
-      }
+    }
+  } else {
+    console.log('Age not a number')
+  }
 };
 
 compareObjects(dog, cat, 'age');
@@ -50,13 +54,14 @@ var songsCollection = [
   }
 ];
 
-function favoriteSong(collection) {
-  function Song(name, played, index) {
-    this.name = name;
-    this.played = played;
-    this.index = index;
-  };
 
+function Song(name, played, index) {
+  this.name = name;
+  this.played = played;
+  this.index = index;
+};
+
+function favoriteSong(collection) {
   var result = collection[0].played,
       arrFavotiteSongs =[];
 
@@ -83,25 +88,32 @@ favoriteSong(songsCollection)
 
 //-------------- function calculator------------------
 
-function Calculator() {
-  this.arr = [];
-  this.sum = 0;
-  this.add = function (arg) {
-   this.arr.push(arg);
-  };
-  this.getCurrentSum = function () {
+var methods = {
+  getCurrentSum: function () {
     if (arguments[0]) {
       this.sum = 0;
       for (var i = 0; i < arguments[0]; i++) {
         this.sum = this.sum + this.arr[i];
-        }
-      } else {
-        this.sum = 0;
-        for (var i = 0; i < this.arr.length; i++) {
-          this.sum = this.sum + this.arr[i];
-        }
       }
-  };
+    } else {
+      this.sum = 0;
+      for (var i = 0; i < this.arr.length; i++) {
+        this.sum = this.sum + this.arr[i];
+      }
+    }
+  },
+
+  add: function (arg) {
+    this.arr.push(arg);
+  }
+
+};
+
+Calculator.prototype = methods;
+
+function Calculator() {
+  this.arr = [];
+  this.sum = 0;
 };
 
 //---- add number in objects
