@@ -1,18 +1,29 @@
 
 //-------Task 0--------
 function saearchNode(selector) {
-  var nodeList = document.querySelectorAll(selector);
-  // console.log(nodeList);
-  if (nodeList.length !== 0) {
-    if (nodeList.length === 1) {
-       console.log(nodeList[0]);
-    } else {
-      console.log(nodeList);
+  if (selector instanceof Node) {
+    if (selector.nodeType === 1) {
+      console.log('Node')
+    } else if (selector.nodeType === 3) {
+      console.log('Text')
+    } else if (selector.nodeType === 8) {
+      console.log('Comment')
     }
   } else {
-    console.log('Undefined');
-  };
+      var nodeList = document.querySelectorAll(selector);
+      if (nodeList.length !== 0) {
+        if (nodeList.length === 1) {
+           console.log(nodeList[0]);
+        } else {
+          console.log(nodeList);
+        }
+      } else {
+        console.log('Undefined');
+      };
+    }
  };
+
+ var text = document.createTextNode('Warning');
 
 saearchNode('a');
 
