@@ -1,18 +1,40 @@
 
 (function(){
-
     var info= document.querySelector('.info'),
-        main = document.querySelector('.main-content'),
         filmBox = document.querySelector('.films'),
-        load = document.querySelector('.main-info'),
+        load = document.querySelector('.boxInfo'),
         li = document.createElement('li'),
         prev = document.querySelector('.prev'),
         next = document.querySelector('.next'),
         spinner = document.createElement("div");
 
-    var heroId = 1;
+    var id = 1;
 
-    loadHero(heroId);
+    loadHero(id);
+
+    function nextHero(e) {
+      if ( id < 88 ) {
+        id++;
+        removeInfo();
+        loadHero(id);
+      } if ( id === 2 ) {
+        prev.removeAttribute('disabled');
+      } if ( id === 88 ) {
+        next.setAttribute('disabled', 'disabled');
+      };
+    };
+
+    function prevHero(e) {
+      if ( id > 1 ) {
+        id--;
+        removeInfo();
+        loadHero(id);
+      } if ( id === 1 ) {
+        prev.setAttribute('disabled', 'disabled');
+      } if ( id === 87 ) {
+        next.removeAttribute('disabled');
+      };
+    };
 
     function removeInfo (){
       info.textContent = '';
@@ -21,7 +43,7 @@
 
     function loader() {
       load.setAttribute('style', 'opacity: 0');
-      spinner.classList.add("load");
+      spinner.classList.add("loading");
       document.body.appendChild(spinner);
     };
 
@@ -99,27 +121,4 @@
     next.addEventListener('click', nextHero);
     prev.addEventListener('click', prevHero);
 
-    function nextHero(e) {
-      if ( heroId < 88 ) {
-        heroId++;
-        removeInfo();
-        loadHero(heroId);
-      } if ( heroId === 2 ) {
-          prev.removeAttribute('disabled');
-        } if ( heroId === 88 ) {
-            next.setAttribute('disabled', 'disabled');
-        };
-    };
-
-    function prevHero(e) {
-      if ( heroId > 1 ) {
-        heroId--;
-        removeInfo();
-        loadHero(heroId);
-      } if ( heroId === 1 ) {
-          prev.setAttribute('disabled', 'disabled');
-        } if ( heroId === 87 ) {
-            next.removeAttribute('disabled');
-        };
-    };
 })();
